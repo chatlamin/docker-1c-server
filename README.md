@@ -54,3 +54,20 @@ docker-1c-server -- это сервер 1С:Предприятия в конте
 
     docker volume rm 1c-server-home
     docker volume rm 1c-server-logs
+## Как обновить?
+
+Останавливаем контейнер
+
+    docker stop 1c-server
+
+Удаляем только контейнер
+
+    docker rm 1c-server
+
+Скачиваем дистрибутив сервера 1С:Предприятия: https://users.v8.1c.ru/ -> Скачать обновления -> Технологическая платформа 8.3 -> ВЕРСИЯ -> Cервер 1С:Предприятия (64-bit) для DEB-based Linux-систем -> Скачать дистрибутив
+Ложим / кладем новые deb-файлы дистрибутива сервера 1С:Предприятия в каталог `docker-1c-server` (к примеру версии 8.3.13-1513)
+Меняет в Dockerfile в строке `ENV SERVER_VERSION 8.3.10-2639`  версию  на `ENV SERVER_VERSION 8.3.13-1513`
+Делаем
+
+    ./build.sh
+    ./run.sh
